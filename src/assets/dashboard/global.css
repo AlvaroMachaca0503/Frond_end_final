@@ -1,0 +1,51 @@
+/* Importar Bootstrap CSS */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css');
+/* Importar Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* Reset global para pantalla completa */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Colores personalizados para las tarjetas */
+.border-left-primary {
+  border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-success {
+  border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-info {
+  border-left: 0.25rem solid #36b9cc !important;
+}
+
+.border-left-warning {
+  border-left: 0.25rem solid #f6c23e !important;
+}
+
+.text-gray-300 {
+  color: #dddfeb !important;
+}
+
+.text-gray-800 {
+  color: #5a5c69 !important;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
