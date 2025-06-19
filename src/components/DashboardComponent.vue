@@ -58,6 +58,60 @@
                     <span class="sidebar-text">Universidad</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('facultad')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'facultad' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Facultad</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('departamento')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'departamento' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Departamento</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('carrera')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'carrera' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Carrera</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('competencia')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'competencia' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Competencia</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('criterio')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'criterio' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Criterio</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('area')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'area' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Area</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('plan')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'plan' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Plan Curricular</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -242,47 +296,47 @@
 
         <!-- Estudiantes -->
         <div v-if="activeSection === 'estudiantes'" class="section">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0">
-              <i class="fas fa-user-graduate text-primary me-2"></i>
-              Gestión de Estudiantes
-            </h4>
-            <button class="btn btn-primary">
-              <i class="fas fa-plus me-2"></i>
-              Nuevo Estudiante
-            </button>
-          </div>
           <EstudiantesComponent />
         </div>
 
         <!-- Actividades -->
         <div v-if="activeSection === 'actividad'" class="section">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0">
-              <i class="fas fa-clipboard-list text-success me-2"></i>
-              Gestión de Actividades
-            </h4>
-            <button class="btn btn-success">
-              <i class="fas fa-plus me-2"></i>
-              Nueva Actividad
-            </button>
-          </div>
           <ActividadComponent />
         </div>
 
         <!-- Universidad -->
         <div v-if="activeSection === 'universidad'" class="section">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0">
-              <i class="fas fa-university text-info me-2"></i>
-              Gestión de Universidades
-            </h4>
-            <button class="btn btn-info">
-              <i class="fas fa-plus me-2"></i>
-              Nueva Universidad
-            </button>
-          </div>
           <UniversidadComponent />
+        </div>
+
+        <!-- Facultades -->
+        <div v-if="activeSection === 'facultad'" class="section">
+          <FacultadComponent />
+        </div>
+
+        <!-- Departamento -->
+        <div v-if="activeSection === 'departamento'" class="section">
+          <DepartamentoComponent />
+        </div>
+
+        <div v-if="activeSection === 'carrera'" class="section">
+          <CarreraComponent />
+        </div>
+
+        <div v-if="activeSection === 'competencia'" class="section">
+          <CompetenciaComponent />
+        </div>
+
+        <div v-if="activeSection === 'criterio'" class="section">
+          <CriterioComponent />
+        </div>
+
+        <div v-if="activeSection === 'area'" class="section">
+          <AreaComponent />
+        </div>
+
+        <div v-if="activeSection === 'plan'" class="section">
+          <PlanCurricularComponent />
         </div>
 
         <!-- Reportes -->

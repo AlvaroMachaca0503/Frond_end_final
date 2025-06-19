@@ -19,3 +19,38 @@ export const ESTUDIANTES_API = {
 export const TOKEN_API = {
     GET_TOKEN: `${OAUTH_URL}/token/`
 };
+
+export const FACULTADES_API = {
+  LIST: `${BACK_URL}/facultades/`,
+  DETAIL: (id) => `${BACK_URL}/facultades/${id}/`
+}
+
+export const DEPARTAMENTOS_API = {
+  LIST: `${BACK_URL}/departamentos/`,
+  DETAIL: (id) => `${BACK_URL}/departamentos/${id}/`
+}
+
+export const CARRERAS_API = {
+  LIST: `${BACK_URL}/carreras/`,
+  DETAIL: (id) => `${BACK_URL}/carreras/${id}/`
+}
+
+export const COMPETENCIA_API = {
+  LIST: `${BACK_URL}/competencias/`,
+  DETAIL: (id) => `${BACK_URL}/competencias/${id}/`
+}
+
+export const CRITERIO_API = {
+  LIST: `${BACK_URL}/criterios/`,
+  DETAIL: (id) => `${BACK_URL}/criterios/${id}/`
+}
+
+export const AREA_API = {
+  LIST: `${BACK_URL}/areas/`,
+  DETAIL: (id) => `${BACK_URL}/areas/${id}/`
+}
+
+export const PLAN_CURRICULAR_API = {
+  LIST: `${BACK_URL}/planes/`,
+  DETAIL: (id) => `${BACK_URL}/planes/${id}/`
+}
