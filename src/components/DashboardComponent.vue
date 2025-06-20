@@ -136,6 +136,14 @@
                     <span class="sidebar-text">Perfil de Egreso</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('profesion')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'profesion' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Profesiones</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -373,6 +381,10 @@
 
         <div v-if="activeSection === 'perfil'" class="section">
           <PerfilComponent />
+        </div>
+
+        <div v-if="activeSection === 'profesion'" class="section">
+          <ProfesionComponent />
         </div>
 
         <!-- Reportes -->

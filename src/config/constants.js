@@ -70,3 +70,8 @@ export const PERFIL_API = {
   LIST: `${BACK_URL}/perfiles/`,
   DETAIL: (id) => `${BACK_URL}/perfiles/${id}/`
 }
+
+export const PROFESION_API = {
+  LIST: `${BACK_URL}/profesiones/`,
+  DETAIL: (id) => `${BACK_URL}/profesiones/${id}/`
+}
