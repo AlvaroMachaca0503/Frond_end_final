@@ -112,6 +112,14 @@
                     <span class="sidebar-text">Plan Curricular</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('semestreplan')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'semestreplan' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Plan de Semestre</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -339,6 +347,10 @@
           <PlanCurricularComponent />
         </div>
 
+        <div v-if="activeSection === 'semestreplan'" class="section">
+          <SemestrePlanComponent />
+        </div>
+
         <!-- Reportes -->
         <div v-if="activeSection === 'reportes'" class="section">
           <div class="d-flex justify-content-between align-items-center mb-4">
@@ -433,6 +445,7 @@
 
 <script>
 import Dashboard from '@/scripts/dashboard/logicaDashboard'
+import SemestrePlanComponent from './SemestrePlanComponent.vue';
 
 export default {
   ...Dashboard

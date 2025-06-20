@@ -54,3 +54,13 @@ export const PLAN_CURRICULAR_API = {
   LIST: `${BACK_URL}/planes/`,
   DETAIL: (id) => `${BACK_URL}/planes/${id}/`
 }
+
+export const SEMESTRE_PLAN_API = {
+  LIST: `${BACK_URL}/semestres-plan/`,
+  DETAIL: (id) => `${BACK_URL}/semestres-plan/${id}/`
+}
+
+export const CURSO_API = {
+  LIST: `${BACK_URL}/cursos/`,
+  DETAIL: (id) => `${BACK_URL}/cursos/${id}/`
+}

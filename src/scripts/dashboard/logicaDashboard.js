@@ -8,6 +8,7 @@ import CompetenciaComponent from '@/components/CompetenciaComponent.vue'
 import CriterioComponent from '@/components/CriterioComponent.vue'
 import AreaComponent from '@/components/AreaComponent.vue'
 import PlanCurricularComponent from '@/components/PlanCurricularComponent.vue'
+import SemestrePlanComponent from '@/components/SemestrePlanComponent.vue'
 
 export default {
   name: 'Dashboard',
@@ -21,7 +22,8 @@ export default {
     CompetenciaComponent,
     CriterioComponent,
     AreaComponent,
-    PlanCurricularComponent
+    PlanCurricularComponent,
+    SemestrePlanComponent
   },
   data() {
     return {
@@ -46,7 +48,7 @@ export default {
       this.activeSection = section;
       
       // Si es una sección de tablas maestras, abrir el submenú
-      if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan'].includes(section)) {
+      if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(section)) {
         this.subMenus.tablasMaestras = true;
       }
     },
@@ -57,7 +59,7 @@ export default {
     },
     isParentActive(parentKey) {
       if (parentKey === 'tablasMaestras') {
-        return ['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan'].includes(this.activeSection);
+        return ['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(this.activeSection);
       }
       return false;
     },
@@ -95,7 +97,7 @@ export default {
     // }
 
     // Si la sección activa es parte de tablas maestras, abrir el submenú
-    if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan'].includes(this.activeSection)) {
+    if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(this.activeSection)) {
       this.subMenus.tablasMaestras = true;
     }
   }
