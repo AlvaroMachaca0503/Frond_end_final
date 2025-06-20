@@ -64,3 +64,9 @@ export const CURSO_API = {
   LIST: `${BACK_URL}/cursos/`,
   DETAIL: (id) => `${BACK_URL}/cursos/${id}/`
 }
+
+
+export const PERFIL_API = {
+  LIST: `${BACK_URL}/perfiles/`,
+  DETAIL: (id) => `${BACK_URL}/perfiles/${id}/`
+}

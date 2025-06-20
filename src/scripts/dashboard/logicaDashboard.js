@@ -10,6 +10,23 @@ import AreaComponent from '@/components/AreaComponent.vue'
 import PlanCurricularComponent from '@/components/PlanCurricularComponent.vue'
 import SemestrePlanComponent from '@/components/SemestrePlanComponent.vue'
 import CursoComponent from '@/components/CursoComponent.vue'
+import PerfilComponent from '@/components/PerfilComponent.vue'
+
+const TABLAS_MAESTRAS_SECTIONS = [
+  'estudiantes',
+  'actividad',
+  'universidad',
+  'facultad',
+  'departamento',
+  'carrera',
+  'competencia',
+  'criterio',
+  'area',
+  'plan',
+  'semestreplan',
+  'curso',
+  'perfil'
+];
 
 export default {
   name: 'Dashboard',
@@ -25,7 +42,8 @@ export default {
     AreaComponent,
     PlanCurricularComponent,
     SemestrePlanComponent,
-    CursoComponent
+    CursoComponent,
+    PerfilComponent
   },
   data() {
     return {
@@ -40,7 +58,6 @@ export default {
     toggleSidebar() {
       this.sidebarCollapsed = !this.sidebarCollapsed;
       if (this.sidebarCollapsed) {
-        // Cerrar todos los submenús cuando se colapsa el sidebar
         Object.keys(this.subMenus).forEach(key => {
           this.subMenus[key] = false;
         });
@@ -48,9 +65,7 @@ export default {
     },
     setActiveSection(section) {
       this.activeSection = section;
-      
-      // Si es una sección de tablas maestras, abrir el submenú
-      if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(section)) {
+      if (TABLAS_MAESTRAS_SECTIONS.includes(section)) {
         this.subMenus.tablasMaestras = true;
       }
     },
@@ -61,7 +76,7 @@ export default {
     },
     isParentActive(parentKey) {
       if (parentKey === 'tablasMaestras') {
-        return ['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(this.activeSection);
+        return TABLAS_MAESTRAS_SECTIONS.includes(this.activeSection);
       }
       return false;
     },
@@ -71,37 +86,28 @@ export default {
         estudiantes: 'Gestión de Estudiantes',
         actividad: 'Gestión de Actividades',
         universidad: 'Gestión de Universidades',
-        facultades: 'Gestión de Facultades',
+        facultad: 'Gestión de Facultades',
         departamento: 'Gestión de Departamentos',
         carrera: 'Gestión de carreras',
         competencia: 'Gestión de competencias',
         criterio: 'Gestión de criterios',
         area: 'Gestión de areas',
         plan: 'Gestión plan curricular',
+        semestreplan: 'Gestión de semestres del plan',
         curso: 'Gestión de curso',
+        perfil: 'Gestión de perfiles',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };
       return titles[this.activeSection] || 'Dashboard';
     },
     handleLogout() {
-      // Emitir evento para notificar logout
       this.$emit('logout');
-      
-      // Opcional: redirect con router
-      // this.$router.push('/login');
     }
   },
   mounted() {
-    // Verificar si hay token al montar el componente
-    // const token = localStorage.getItem('access_token');
-    // if (!token) {
-    //   this.$emit('logout');
-    // }
-
-    // Si la sección activa es parte de tablas maestras, abrir el submenú
-    if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(this.activeSection)) {
+    if (TABLAS_MAESTRAS_SECTIONS.includes(this.activeSection)) {
       this.subMenus.tablasMaestras = true;
     }
   }
-}
+};
