@@ -120,6 +120,14 @@
                     <span class="sidebar-text">Plan de Semestre</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('curso')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'curso' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Cursos</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -349,6 +357,10 @@
 
         <div v-if="activeSection === 'semestreplan'" class="section">
           <SemestrePlanComponent />
+        </div>
+
+        <div v-if="activeSection === 'curso'" class="section">
+          <CursoComponent />
         </div>
 
         <!-- Reportes -->

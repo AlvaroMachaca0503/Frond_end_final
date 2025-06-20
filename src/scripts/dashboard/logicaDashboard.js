@@ -9,6 +9,7 @@ import CriterioComponent from '@/components/CriterioComponent.vue'
 import AreaComponent from '@/components/AreaComponent.vue'
 import PlanCurricularComponent from '@/components/PlanCurricularComponent.vue'
 import SemestrePlanComponent from '@/components/SemestrePlanComponent.vue'
+import CursoComponent from '@/components/CursoComponent.vue'
 
 export default {
   name: 'Dashboard',
@@ -23,7 +24,8 @@ export default {
     CriterioComponent,
     AreaComponent,
     PlanCurricularComponent,
-    SemestrePlanComponent
+    SemestrePlanComponent,
+    CursoComponent
   },
   data() {
     return {
@@ -48,7 +50,7 @@ export default {
       this.activeSection = section;
       
       // Si es una sección de tablas maestras, abrir el submenú
-      if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(section)) {
+      if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(section)) {
         this.subMenus.tablasMaestras = true;
       }
     },
@@ -59,7 +61,7 @@ export default {
     },
     isParentActive(parentKey) {
       if (parentKey === 'tablasMaestras') {
-        return ['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(this.activeSection);
+        return ['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(this.activeSection);
       }
       return false;
     },
@@ -76,6 +78,7 @@ export default {
         criterio: 'Gestión de criterios',
         area: 'Gestión de areas',
         plan: 'Gestión plan curricular',
+        curso: 'Gestión de curso',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };
@@ -97,7 +100,7 @@ export default {
     // }
 
     // Si la sección activa es parte de tablas maestras, abrir el submenú
-    if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan'].includes(this.activeSection)) {
+    if (['estudiantes', 'actividad', 'universidad', 'facultad', 'departamento', 'carrera', 'competencia', 'criterio', 'area', 'plan', 'semestreplan', 'curso'].includes(this.activeSection)) {
       this.subMenus.tablasMaestras = true;
     }
   }
