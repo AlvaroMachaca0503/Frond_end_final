@@ -80,3 +80,8 @@ export const PROFESOR_API = {
   LIST: `${BACK_URL}/profesores/`,
   DETAIL: (id) => `${BACK_URL}/profesores/${id}/`
 }
+
+export const SUMILLA_API = {
+  LIST: `${BACK_URL}/sumillas/`,
+  DETAIL: (id) => `${BACK_URL}/sumillas/${id}/`
+}

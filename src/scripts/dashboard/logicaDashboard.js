@@ -13,6 +13,7 @@ import CursoComponent from '@/components/CursoComponent.vue'
 import PerfilComponent from '@/components/PerfilComponent.vue'
 import ProfesionComponent from '@/components/ProfesionComponent.vue'
 import ProfesorComponent from '@/components/ProfesorComponent.vue'
+import SumillaComponent from '@/components/SumillaComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -29,7 +30,8 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'curso',
   'perfil',
   'profesion',
-  'profesor'
+  'profesor',
+  'sumilla'
 ];
 
 export default {
@@ -49,7 +51,8 @@ export default {
     CursoComponent,
     PerfilComponent,
     ProfesionComponent,
-    ProfesorComponent
+    ProfesorComponent,
+    SumillaComponent
   },
   data() {
     return {
@@ -104,6 +107,7 @@ export default {
         perfil: 'Gestión de perfiles',
         profesion: 'Gestión de profesiones',
         profesor: 'Gestión de profesores',
+        sumilla: 'Gestión de sumillas',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };

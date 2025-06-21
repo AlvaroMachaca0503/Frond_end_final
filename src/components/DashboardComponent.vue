@@ -152,6 +152,14 @@
                     <span class="sidebar-text">Profesores</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('sumilla')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'sumilla' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Sumillas</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -397,6 +405,10 @@
 
         <div v-if="activeSection === 'profesor'" class="section">
           <ProfesorComponent />
+        </div>
+
+        <div v-if="activeSection === 'sumilla'" class="section">
+          <SumillaComponent />
         </div>
 
         <!-- Reportes -->
