@@ -12,23 +12,20 @@
         <h3>{{ editingItem ? 'Editar Silabo' : 'Nuevo Silabo' }}</h3>
         <form @submit.prevent="submitForm">
 
-          <!-- ID (solo en edición si es necesario mostrar) -->
+          <!-- ID (solo edición) -->
           <div class="form-group" v-if="editingItem">
             <label>ID</label>
             <input v-model="formData.id" disabled class="form-input" />
           </div>
 
+          <!-- Periodo -->
           <div class="form-group">
             <label>Periodo *</label>
             <input v-model="formData.periodo" required class="form-input" />
           </div>
 
-          <!-- Campos relacionados -->
-          <div
-            class="form-group"
-            v-for="(label, field) in camposRelacionados"
-            :key="field"
-          >
+          <!-- Campos select -->
+          <div class="form-group" v-for="(label, field) in camposRelacionados" :key="field">
             <label>{{ label }} *</label>
             <select v-model="formData[field]" required class="form-input">
               <option disabled value="">Seleccione {{ label.toLowerCase() }}</option>
@@ -46,6 +43,7 @@
             </label>
           </div>
 
+          <!-- Acciones -->
           <div class="form-actions">
             <button type="button" @click="cancelForm" class="btn btn-secondary">Cancelar</button>
             <button type="submit" class="btn btn-primary" :disabled="loading">
@@ -76,6 +74,13 @@
               <th>Facultad</th>
               <th>Carrera</th>
               <th>Curso</th>
+              <th>Competencia</th>
+              <th>Perfil</th>
+              <th>Competencia Profesional</th>
+              <th>Sumilla</th>
+              <th>Unidad</th>
+              <th>Actividad</th>
+              <th>Criterio</th>
               <th>Activo</th>
               <th class="actions-column">Acciones</th>
             </tr>
@@ -84,10 +89,17 @@
             <tr v-for="silabo in paginatedSilabos" :key="silabo.id">
               <td>{{ silabo.id }}</td>
               <td>{{ silabo.periodo }}</td>
-              <td>{{ silabo.profesor_detalle?.nombre || 'N/A' }}</td>
+              <td>{{ silabo.profesor_detalle?.usuario?.first_name || 'N/A' }}</td>
               <td>{{ silabo.facultad_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.carrera_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.curso_detalle?.nombre || 'N/A' }}</td>
+              <td>{{ silabo.competencia_detalle?.descripcion || 'N/A' }}</td>
+              <td>{{ silabo.perfil_detalle?.descripcion || 'N/A' }}</td>
+              <td>{{ silabo.competencia_profesional_detalle?.descripcion || 'N/A' }}</td>
+              <td>{{ silabo.sumilla_detalle?.descripcion || 'N/A' }}</td>
+              <td>{{ silabo.unidad_detalle?.descripcion || 'N/A' }}</td>
+              <td>{{ silabo.actividad_detalle?.nombre || 'N/A' }}</td>
+              <td>{{ silabo.criterio_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.activo ? 'Activo' : 'Inactivo' }}</td>
               <td>
                 <div class="action-buttons">
@@ -128,6 +140,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import SilaboComponent from '@/scripts/silabo/logicaSilabo'

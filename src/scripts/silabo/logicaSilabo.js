@@ -30,6 +30,7 @@ export default {
       itemsPerPage: 10,
       searchTerm: '',
       formData: {
+        id: null,
         periodo: '',
         profesor_id: '',
         facultad_id: '',
@@ -71,6 +72,36 @@ export default {
     },
     paginatedSilabos() {
       return this.filteredSilabos.slice(this.startIndex, this.endIndex);
+    },
+    camposRelacionados() {
+      return {
+        profesor_id: 'Profesor',
+        facultad_id: 'Facultad',
+        carrera_id: 'Carrera',
+        curso_id: 'Curso',
+        competencia_id: 'Competencia',
+        perfil_id: 'Perfil',
+        competencia_profesional_id: 'Competencia Profesional',
+        sumilla_id: 'Sumilla',
+        unidad_id: 'Unidad',
+        actividad_id: 'Actividad',
+        criterio_id: 'Criterio'
+      };
+    },
+    entidades() {
+      return {
+        profesor_id: this.profesores,
+        facultad_id: this.facultades,
+        carrera_id: this.carreras,
+        curso_id: this.cursos,
+        competencia_id: this.competencias,
+        perfil_id: this.perfiles,
+        competencia_profesional_id: this.competencias,
+        sumilla_id: this.sumillas,
+        unidad_id: this.unidades,
+        actividad_id: this.actividades,
+        criterio_id: this.criterios
+      };
     }
   },
   watch: {
@@ -215,6 +246,7 @@ export default {
       this.editingItem = null;
       this.showCreateForm = false;
       this.formData = {
+        id: null,
         periodo: '',
         profesor_id: '',
         facultad_id: '',
