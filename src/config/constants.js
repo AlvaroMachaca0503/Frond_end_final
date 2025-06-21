@@ -100,3 +100,8 @@ export const SEMANA_API = {
   LIST: `${BACK_URL}/semanas/`,
   DETAIL: (id) => `${BACK_URL}/semanas/${id}/`
 }
+
+export const UNIDAD_API = {
+  LIST: `${BACK_URL}/unidades/`,
+  DETAIL: (id) => `${BACK_URL}/unidades/${id}/`
+}

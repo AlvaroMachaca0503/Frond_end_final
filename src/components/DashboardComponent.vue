@@ -184,6 +184,14 @@
                     <span class="sidebar-text">Semanas</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('unidad')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'unidad' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Unidades</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -445,6 +453,10 @@
 
         <div v-if="activeSection === 'semana'" class="section">
           <SemanaComponent />
+        </div>
+
+        <div v-if="activeSection === 'unidad'" class="section">
+          <UnidadComponent />
         </div>
 
         <!-- Reportes -->
