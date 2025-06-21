@@ -102,6 +102,21 @@ export default {
         actividad_id: this.actividades,
         criterio_id: this.criterios
       };
+    },
+    mostrarNombre() {
+      return {
+        profesor_id: (item) => item.usuario?.first_name || `ID: ${item.id}`,
+        facultad_id: (item) => item.nombre,
+        carrera_id: (item) => item.nombre,
+        curso_id: (item) => item.nombre,
+        competencia_id: (item) => item.descripcion,
+        perfil_id: (item) => item.descripcion,
+        competencia_profesional_id: (item) => item.descripcion,
+        sumilla_id: (item) => item.descripcion,
+        unidad_id: (item) => item.descripcion,
+        actividad_id: (item) => item.nombre,
+        criterio_id: (item) => item.nombre
+      };
     }
   },
   watch: {

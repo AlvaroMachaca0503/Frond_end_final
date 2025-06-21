@@ -12,7 +12,7 @@
         <h3>{{ editingItem ? 'Editar Silabo' : 'Nuevo Silabo' }}</h3>
         <form @submit.prevent="submitForm">
 
-          <!-- ID (solo edición) -->
+          <!-- ID -->
           <div class="form-group" v-if="editingItem">
             <label>ID</label>
             <input v-model="formData.id" disabled class="form-input" />
@@ -24,13 +24,13 @@
             <input v-model="formData.periodo" required class="form-input" />
           </div>
 
-          <!-- Campos select -->
+          <!-- Campos Select -->
           <div class="form-group" v-for="(label, field) in camposRelacionados" :key="field">
             <label>{{ label }} *</label>
             <select v-model="formData[field]" required class="form-input">
               <option disabled value="">Seleccione {{ label.toLowerCase() }}</option>
               <option v-for="item in entidades[field]" :key="item.id" :value="item.id">
-                {{ item.nombre || ('ID: ' + item.id) }}
+                {{ mostrarNombre[field](item) }}
               </option>
             </select>
           </div>
@@ -140,7 +140,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import SilaboComponent from '@/scripts/silabo/logicaSilabo'
