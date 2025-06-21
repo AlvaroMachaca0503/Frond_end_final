@@ -85,3 +85,8 @@ export const SUMILLA_API = {
   LIST: `${BACK_URL}/sumillas/`,
   DETAIL: (id) => `${BACK_URL}/sumillas/${id}/`
 }
+
+export const BIBLIOGRAFIA_API = {
+  LIST: `${BACK_URL}/bibliografias/`,
+  DETAIL: (id) => `${BACK_URL}/bibliografias/${id}/`
+}
