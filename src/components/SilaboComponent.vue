@@ -133,25 +133,7 @@
 import SilaboComponent from '@/scripts/silabo/logicaSilabo'
 
 export default {
-  ...SilaboComponent,
-  data() {
-    return {
-      ...SilaboComponent.data(),
-      camposRelacionados: {
-        profesor_id: 'Profesor',
-        facultad_id: 'Facultad',
-        carrera_id: 'Carrera',
-        curso_id: 'Curso',
-        competencia_id: 'Competencia',
-        perfil_id: 'Perfil',
-        competencia_profesional_id: 'Competencia Profesional',
-        sumilla_id: 'Sumilla',
-        unidad_id: 'Unidad',
-        actividad_id: 'Actividad',
-        criterio_id: 'Criterio'
-      }
-    }
-  }
+  ...SilaboComponent
 }
 </script>
 
