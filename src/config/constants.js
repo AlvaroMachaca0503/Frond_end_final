@@ -90,3 +90,8 @@ export const BIBLIOGRAFIA_API = {
   LIST: `${BACK_URL}/bibliografias/`,
   DETAIL: (id) => `${BACK_URL}/bibliografias/${id}/`
 }
+
+export const METODOLOGIA_API = {
+  LIST: `${BACK_URL}/metodologias/`,
+  DETAIL: (id) => `${BACK_URL}/metodologias/${id}/`
+}
