@@ -176,6 +176,14 @@
                     <span class="sidebar-text">Metodologias</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('semana')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'semana' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Semanas</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -435,6 +443,10 @@
           <MetodologiaComponent />
         </div>
 
+        <div v-if="activeSection === 'semana'" class="section">
+          <SemanaComponent />
+        </div>
+
         <!-- Reportes -->
         <div v-if="activeSection === 'reportes'" class="section">
           <div class="d-flex justify-content-between align-items-center mb-4">
@@ -532,6 +544,7 @@ import Dashboard from '@/scripts/dashboard/logicaDashboard'
 import SemestrePlanComponent from './SemestrePlanComponent.vue';
 import BibliografiaComponent from './BibliografiaComponent.vue';
 import MetodologiaComponent from './MetodologiaComponent.vue';
+import SemanaComponent from './SemanaComponent.vue';
 
 export default {
   ...Dashboard

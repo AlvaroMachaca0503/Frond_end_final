@@ -16,6 +16,7 @@ import ProfesorComponent from '@/components/ProfesorComponent.vue'
 import SumillaComponent from '@/components/SumillaComponent.vue'
 import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
 import MetodologiaComponent from '@/components/MetodologiaComponent.vue'
+import SemanaComponent from '@/components/SemanaComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -35,7 +36,8 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'profesor',
   'sumilla',
   'bibliografia',
-  'metodologia'
+  'metodologia',
+  'semana'
 ];
 
 export default {
@@ -58,7 +60,8 @@ export default {
     ProfesorComponent,
     SumillaComponent,
     BibliografiaComponent,
-    MetodologiaComponent
+    MetodologiaComponent,
+    SemanaComponent
   },
   data() {
     return {
@@ -116,6 +119,7 @@ export default {
         sumilla: 'Gestión de sumillas',
         bibliografia: 'Gestión de bibliografías',
         metodologia: 'Gestión de metodologías',
+        semana: 'Gestión de semanas',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };

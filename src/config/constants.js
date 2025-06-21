@@ -95,3 +95,8 @@ export const METODOLOGIA_API = {
   LIST: `${BACK_URL}/metodologias/`,
   DETAIL: (id) => `${BACK_URL}/metodologias/${id}/`
 }
+
+export const SEMANA_API = {
+  LIST: `${BACK_URL}/semanas/`,
+  DETAIL: (id) => `${BACK_URL}/semanas/${id}/`
+}
