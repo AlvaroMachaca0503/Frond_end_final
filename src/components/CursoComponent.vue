@@ -1,5 +1,5 @@
 <template>
-  <div class="curso-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Cursos</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">Nuevo Curso</button>
@@ -196,5 +196,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/curso/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>

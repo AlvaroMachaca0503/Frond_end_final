@@ -1,5 +1,5 @@
 <template>
-  <div class="criterio-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Criterios</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">
@@ -145,5 +145,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/criterio/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>

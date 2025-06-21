@@ -1,5 +1,5 @@
 <template>
-  <div class="unidad-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Unidades</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">Nueva Unidad</button>
@@ -182,5 +182,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/unidad/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>

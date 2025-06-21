@@ -1,5 +1,5 @@
 <template>
-  <div class="bibliografia-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Bibliografías</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">
@@ -200,5 +200,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/bibliografia/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>

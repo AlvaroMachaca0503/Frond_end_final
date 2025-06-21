@@ -1,5 +1,5 @@
 <template>
-  <div class="carrera-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Carreras</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">
@@ -158,5 +158,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/carrera/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>

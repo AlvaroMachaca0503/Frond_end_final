@@ -1,5 +1,5 @@
 <template>
-  <div class="competencia-component">
+  <div class="general-component">
     <div class="component-header">
       <h2>Gestión de Competencias</h2>
       <button @click="showCreateForm = true" class="btn btn-primary">
@@ -168,5 +168,5 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/competencia/particular.css';
+@import '@/assets/global_design/general_component_design.css';
 </style>
