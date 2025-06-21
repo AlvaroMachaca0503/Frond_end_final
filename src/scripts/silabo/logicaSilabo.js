@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       silabos: [],
+      filteredSilabos: [],
       loading: false,
       error: null,
       showCreateForm: false,
@@ -28,7 +29,6 @@ export default {
       currentPage: 1,
       itemsPerPage: 10,
       searchTerm: '',
-      filteredSilabos: [],
       formData: {
         periodo: '',
         profesor_id: '',
@@ -97,6 +97,7 @@ export default {
         this.fetchData(CRITERIO_API.LIST, 'criterios')
       ]);
     },
+
     async fetchData(url, target) {
       try {
         const token = localStorage.getItem('access_token');
@@ -109,6 +110,7 @@ export default {
         this.error = err.message;
       }
     },
+
     async fetchSilabos() {
       this.loading = true;
       try {
@@ -124,6 +126,7 @@ export default {
         this.loading = false;
       }
     },
+
     async submitForm() {
       this.loading = true;
       try {
@@ -131,7 +134,20 @@ export default {
         const url = this.editingItem ? SILABO_API.DETAIL(this.editingItem.id) : SILABO_API.LIST;
         const method = this.editingItem ? 'PUT' : 'POST';
 
-        const payload = { ...this.formData };
+        const payload = {
+          ...this.formData,
+          profesor: this.formData.profesor_id,
+          facultad: this.formData.facultad_id,
+          carrera: this.formData.carrera_id,
+          curso: this.formData.curso_id,
+          competencia: this.formData.competencia_id,
+          perfil: this.formData.perfil_id,
+          competencia_profesional: this.formData.competencia_profesional_id,
+          sumilla: this.formData.sumilla_id,
+          unidad: this.formData.unidad_id,
+          actividad: this.formData.actividad_id,
+          criterio: this.formData.criterio_id
+        };
 
         const res = await fetch(url, {
           method,
@@ -155,11 +171,28 @@ export default {
         this.loading = false;
       }
     },
+
     editItem(silabo) {
       this.editingItem = silabo;
-      this.formData = { ...silabo };
+      this.formData = {
+        id: silabo.id,
+        periodo: silabo.periodo,
+        profesor_id: silabo.profesor,
+        facultad_id: silabo.facultad,
+        carrera_id: silabo.carrera,
+        curso_id: silabo.curso,
+        competencia_id: silabo.competencia,
+        perfil_id: silabo.perfil,
+        competencia_profesional_id: silabo.competencia_profesional,
+        sumilla_id: silabo.sumilla,
+        unidad_id: silabo.unidad,
+        actividad_id: silabo.actividad,
+        criterio_id: silabo.criterio,
+        activo: silabo.activo
+      };
       this.showCreateForm = true;
     },
+
     async deleteItem(silabo) {
       if (!confirm(`¿Está seguro de eliminar el silabo con ID ${silabo.id}?`)) return;
       this.loading = true;
@@ -177,6 +210,7 @@ export default {
         this.loading = false;
       }
     },
+
     cancelForm() {
       this.editingItem = null;
       this.showCreateForm = false;
@@ -196,29 +230,29 @@ export default {
         activo: true
       };
     },
+
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages) {
         this.currentPage = page;
       }
     },
+
     changeItemsPerPage() {
       this.currentPage = 1;
     },
+
     handleSearch() {
       this.currentPage = 1;
       this.applyFilters();
     },
+
     applyFilters() {
-      if (!this.searchTerm.trim()) {
-        this.filteredSilabos = [...this.silabos];
-      } else {
-        const term = this.searchTerm.toLowerCase();
-        this.filteredSilabos = this.silabos.filter(s =>
-          s.periodo.toLowerCase().includes(term) ||
-          s.profesor_detalle?.usuario?.first_name?.toLowerCase().includes(term) ||
-          s.curso_detalle?.nombre?.toLowerCase().includes(term)
-        );
-      }
+      const term = this.searchTerm.toLowerCase();
+      this.filteredSilabos = this.silabos.filter(s =>
+        s.periodo.toLowerCase().includes(term) ||
+        s.profesor_detalle?.usuario?.first_name?.toLowerCase().includes(term) ||
+        s.curso_detalle?.nombre?.toLowerCase().includes(term)
+      );
     }
   }
 };

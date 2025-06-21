@@ -11,21 +11,34 @@
       <div class="form-content">
         <h3>{{ editingItem ? 'Editar Silabo' : 'Nuevo Silabo' }}</h3>
         <form @submit.prevent="submitForm">
+
+          <!-- ID (solo en edición si es necesario mostrar) -->
+          <div class="form-group" v-if="editingItem">
+            <label>ID</label>
+            <input v-model="formData.id" disabled class="form-input" />
+          </div>
+
           <div class="form-group">
             <label>Periodo *</label>
             <input v-model="formData.periodo" required class="form-input" />
           </div>
 
-          <div class="form-group" v-for="(label, field) in camposRelacionados" :key="field">
+          <!-- Campos relacionados -->
+          <div
+            class="form-group"
+            v-for="(label, field) in camposRelacionados"
+            :key="field"
+          >
             <label>{{ label }} *</label>
             <select v-model="formData[field]" required class="form-input">
               <option disabled value="">Seleccione {{ label.toLowerCase() }}</option>
               <option v-for="item in entidades[field]" :key="item.id" :value="item.id">
-                {{ item.nombre || `ID: ${item.id}` }}
+                {{ item.nombre || ('ID: ' + item.id) }}
               </option>
             </select>
           </div>
 
+          <!-- Activo -->
           <div class="form-group">
             <label>
               <input type="checkbox" v-model="formData.activo" />
@@ -43,19 +56,16 @@
       </div>
     </div>
 
-    <!-- Tabla de silabos -->
+    <!-- Tabla -->
     <div class="data-table">
       <div v-if="loading && !silabos.length" class="loading">Cargando silabos...</div>
-
       <div v-else-if="error" class="error">
         {{ error }}
         <button @click="fetchSilabos" class="btn btn-secondary">Reintentar</button>
       </div>
-
       <div v-else-if="!paginatedSilabos.length" class="empty-state">
         {{ searchTerm ? 'No se encontraron silabos' : 'No hay silabos registrados' }}
       </div>
-
       <div v-else class="table-wrapper">
         <table class="table">
           <thead>
@@ -63,9 +73,9 @@
               <th>ID</th>
               <th>Periodo</th>
               <th>Profesor</th>
-              <th>Curso</th>
               <th>Facultad</th>
               <th>Carrera</th>
+              <th>Curso</th>
               <th>Activo</th>
               <th class="actions-column">Acciones</th>
             </tr>
@@ -75,9 +85,9 @@
               <td>{{ silabo.id }}</td>
               <td>{{ silabo.periodo }}</td>
               <td>{{ silabo.profesor_detalle?.nombre || 'N/A' }}</td>
-              <td>{{ silabo.curso_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.facultad_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.carrera_detalle?.nombre || 'N/A' }}</td>
+              <td>{{ silabo.curso_detalle?.nombre || 'N/A' }}</td>
               <td>{{ silabo.activo ? 'Activo' : 'Inactivo' }}</td>
               <td>
                 <div class="action-buttons">
@@ -121,8 +131,27 @@
 
 <script>
 import SilaboComponent from '@/scripts/silabo/logicaSilabo'
+
 export default {
-  ...SilaboComponent
+  ...SilaboComponent,
+  data() {
+    return {
+      ...SilaboComponent.data(),
+      camposRelacionados: {
+        profesor_id: 'Profesor',
+        facultad_id: 'Facultad',
+        carrera_id: 'Carrera',
+        curso_id: 'Curso',
+        competencia_id: 'Competencia',
+        perfil_id: 'Perfil',
+        competencia_profesional_id: 'Competencia Profesional',
+        sumilla_id: 'Sumilla',
+        unidad_id: 'Unidad',
+        actividad_id: 'Actividad',
+        criterio_id: 'Criterio'
+      }
+    }
+  }
 }
 </script>
 
