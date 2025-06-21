@@ -192,6 +192,14 @@
                     <span class="sidebar-text">Unidades</span>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('silabo')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'silabo' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Silabo</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
@@ -457,6 +465,10 @@
 
         <div v-if="activeSection === 'unidad'" class="section">
           <UnidadComponent />
+        </div>
+
+        <div v-if="activeSection === 'silabo'" class="section">
+          <SilaboComponent />
         </div>
 
         <!-- Reportes -->

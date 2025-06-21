@@ -18,6 +18,7 @@ import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
 import MetodologiaComponent from '@/components/MetodologiaComponent.vue'
 import SemanaComponent from '@/components/SemanaComponent.vue'
 import UnidadComponent from '@/components/UnidadComponent.vue'
+import SilaboComponent from '@/components/SilaboComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -39,7 +40,8 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'bibliografia',
   'metodologia',
   'semana',
-  'unidad'
+  'unidad',
+  'silabo'
 ];
 
 export default {
@@ -64,7 +66,8 @@ export default {
     BibliografiaComponent,
     MetodologiaComponent,
     SemanaComponent,
-    UnidadComponent
+    UnidadComponent,
+    SilaboComponent
   },
   data() {
     return {
@@ -124,6 +127,7 @@ export default {
         metodologia: 'Gestión de metodologías',
         semana: 'Gestión de semanas',
         unidad: 'Gestión de unidades',
+        silabo: 'Gestión de silabos',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };
