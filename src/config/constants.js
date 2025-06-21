@@ -75,3 +75,8 @@ export const PROFESION_API = {
   LIST: `${BACK_URL}/profesiones/`,
   DETAIL: (id) => `${BACK_URL}/profesiones/${id}/`
 }
+
+export const PROFESOR_API = {
+  LIST: `${BACK_URL}/profesores/`,
+  DETAIL: (id) => `${BACK_URL}/profesores/${id}/`
+}

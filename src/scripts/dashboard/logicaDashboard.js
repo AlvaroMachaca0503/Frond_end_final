@@ -12,6 +12,7 @@ import SemestrePlanComponent from '@/components/SemestrePlanComponent.vue'
 import CursoComponent from '@/components/CursoComponent.vue'
 import PerfilComponent from '@/components/PerfilComponent.vue'
 import ProfesionComponent from '@/components/ProfesionComponent.vue'
+import ProfesorComponent from '@/components/ProfesorComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -27,7 +28,8 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'semestreplan',
   'curso',
   'perfil',
-  'profesion'
+  'profesion',
+  'profesor'
 ];
 
 export default {
@@ -46,7 +48,8 @@ export default {
     SemestrePlanComponent,
     CursoComponent,
     PerfilComponent,
-    ProfesionComponent
+    ProfesionComponent,
+    ProfesorComponent
   },
   data() {
     return {
@@ -100,6 +103,7 @@ export default {
         curso: 'Gestión de curso',
         perfil: 'Gestión de perfiles',
         profesion: 'Gestión de profesiones',
+        profesor: 'Gestión de profesores',
         reportes: 'Reportes del Sistema',
         configuracion: 'Configuración'
       };
