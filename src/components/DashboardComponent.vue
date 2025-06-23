@@ -20,22 +20,21 @@
             </a>
           </li>
 
-          <!-- Tablas Maestras con submenú -->
+          <!-- Gestión de Usuarios -->
           <li class="nav-item">
-            <a href="#" @click="toggleSubMenu('tablasMaestras')" 
+            <a href="#" @click="toggleSubMenu('gestionUsuarios')" 
                class="nav-link d-flex justify-content-between align-items-center"
-               :class="{ active: isParentActive('tablasMaestras') }">
+               :class="{ active: isParentActive('gestionUsuarios') }">
               <div>
-                <i class="fas fa-database sidebar-icon"></i>
-                <span v-if="!sidebarCollapsed" class="sidebar-text">Tablas Maestras</span>
+                <i class="fas fa-users sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Gestión de Usuarios</span>
               </div>
               <i v-if="!sidebarCollapsed" 
-                 :class="subMenus.tablasMaestras ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 :class="subMenus.gestionUsuarios ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
                  class="submenu-arrow"></i>
             </a>
             
-            <!-- Submenú de Tablas Maestras -->
-            <div v-if="subMenus.tablasMaestras && !sidebarCollapsed" class="submenu">
+            <div v-if="subMenus.gestionUsuarios && !sidebarCollapsed" class="submenu">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('estudiantes')" 
@@ -45,12 +44,32 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" @click="setActiveSection('actividad')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'actividad' }">
-                    <i class="fas fa-clipboard-list sidebar-icon"></i>
-                    <span class="sidebar-text">Actividades</span>
+                  <a href="#" @click="setActiveSection('profesor')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'profesor' }">
+                    <i class="fas fa-chalkboard-teacher sidebar-icon"></i>
+                    <span class="sidebar-text">Profesores</span>
                   </a>
                 </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Estructura Institucional -->
+          <li class="nav-item">
+            <a href="#" @click="toggleSubMenu('estructuraInstitucional')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('estructuraInstitucional') }">
+              <div>
+                <i class="fas fa-sitemap sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Estructura Institucional</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.estructuraInstitucional ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
+            </a>
+            
+            <div v-if="subMenus.estructuraInstitucional && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('universidad')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'universidad' }">
@@ -61,150 +80,214 @@
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('facultad')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'facultad' }">
-                    <i class="fas fa-university sidebar-icon"></i>
+                    <i class="fas fa-building sidebar-icon"></i>
                     <span class="sidebar-text">Facultad</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('departamento')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'departamento' }">
-                    <i class="fas fa-university sidebar-icon"></i>
+                    <i class="fas fa-door-open sidebar-icon"></i>
                     <span class="sidebar-text">Departamento</span>
                   </a>
                 </li>
-
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('carrera')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'carrera' }">
-                    <i class="fas fa-university sidebar-icon"></i>
+                    <i class="fas fa-graduation-cap sidebar-icon"></i>
                     <span class="sidebar-text">Carrera</span>
                   </a>
                 </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('competencia')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'competencia' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Competencia</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('criterio')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'criterio' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Criterio</span>
-                  </a>
-                </li>
-
                 <li class="nav-item">
                   <a href="#" @click="setActiveSection('area')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'area' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Area</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('plan')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'plan' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Plan Curricular</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('semestreplan')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'semestreplan' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Plan de Semestre</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('curso')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'curso' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Cursos</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('perfil')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'perfil' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Perfil de Egreso</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('profesion')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'profesion' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Profesiones</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('profesor')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'profesor' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Profesores</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('sumilla')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'sumilla' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Sumillas</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('bibliografia')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'bibliografia' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Bibliografias</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('metodologia')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'metodologia' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Metodologias</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('semana')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'semana' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Semanas</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('unidad')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'unidad' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Unidades</span>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('silabo')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'silabo' }">
-                    <i class="fas fa-university sidebar-icon"></i>
-                    <span class="sidebar-text">Silabo</span>
+                    <i class="fas fa-map-marked-alt sidebar-icon"></i>
+                    <span class="sidebar-text">Área</span>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
 
-          <!-- Otros menús principales -->
+          <!-- Currículo Académico -->
+          <li class="nav-item">
+            <a href="#" @click="toggleSubMenu('curriculoAcademico')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('curriculoAcademico') }">
+              <div>
+                <i class="fas fa-book-open sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Currículo Académico</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.curriculoAcademico ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
+            </a>
+            
+            <div v-if="subMenus.curriculoAcademico && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('plan')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'plan' }">
+                    <i class="fas fa-clipboard-list sidebar-icon"></i>
+                    <span class="sidebar-text">Plan Curricular</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('curso')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'curso' }">
+                    <i class="fas fa-book sidebar-icon"></i>
+                    <span class="sidebar-text">Cursos</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('silabo')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'silabo' }">
+                    <i class="fas fa-file-alt sidebar-icon"></i>
+                    <span class="sidebar-text">Sílabo</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('sumilla')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'sumilla' }">
+                    <i class="fas fa-scroll sidebar-icon"></i>
+                    <span class="sidebar-text">Sumillas</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('unidad')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'unidad' }">
+                    <i class="fas fa-puzzle-piece sidebar-icon"></i>
+                    <span class="sidebar-text">Unidades</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Planificación Académica -->
+          <li class="nav-item">
+            <a href="#" @click="toggleSubMenu('planificacionAcademica')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('planificacionAcademica') }">
+              <div>
+                <i class="fas fa-calendar-alt sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Planificación Académica</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.planificacionAcademica ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
+            </a>
+            
+            <div v-if="subMenus.planificacionAcademica && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('semestreplan')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'semestreplan' }">
+                    <i class="fas fa-calendar-week sidebar-icon"></i>
+                    <span class="sidebar-text">Plan de Semestre</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('semana')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'semana' }">
+                    <i class="fas fa-calendar-day sidebar-icon"></i>
+                    <span class="sidebar-text">Semanas</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('actividad')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'actividad' }">
+                    <i class="fas fa-tasks sidebar-icon"></i>
+                    <span class="sidebar-text">Actividades</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Competencias y Evaluación -->
+          <li class="nav-item">
+            <a href="#" @click="toggleSubMenu('competenciasEvaluacion')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('competenciasEvaluacion') }">
+              <div>
+                <i class="fas fa-medal sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Desempeño</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.competenciasEvaluacion ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
+            </a>
+            
+            <div v-if="subMenus.competenciasEvaluacion && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('competencia')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'competencia' }">
+                    <i class="fas fa-trophy sidebar-icon"></i>
+                    <span class="sidebar-text">Competencia</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('criterio')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'criterio' }">
+                    <i class="fas fa-check-square sidebar-icon"></i>
+                    <span class="sidebar-text">Criterio</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('perfil')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'perfil' }">
+                    <i class="fas fa-user-tie sidebar-icon"></i>
+                    <span class="sidebar-text">Perfil de Egreso</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Recursos Académicos -->
+          <li class="nav-item">
+            <a href="#" @click="toggleSubMenu('recursosAcademicos')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('recursosAcademicos') }">
+              <div>
+                <i class="fas fa-tools sidebar-icon"></i>
+                <span v-if="!sidebarCollapsed" class="sidebar-text">Recursos Académicos</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.recursosAcademicos ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
+            </a>
+            
+            <div v-if="subMenus.recursosAcademicos && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('bibliografia')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'bibliografia' }">
+                    <i class="fas fa-book sidebar-icon"></i>
+                    <span class="sidebar-text">Bibliografías</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('metodologia')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'metodologia' }">
+                    <i class="fas fa-lightbulb sidebar-icon"></i>
+                    <span class="sidebar-text">Metodologías</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('profesion')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'profesion' }">
+                    <i class="fas fa-briefcase sidebar-icon"></i>
+                    <span class="sidebar-text">Profesiones</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Reportes -->
           <li class="nav-item">
             <a href="#" @click="setActiveSection('reportes')" 
                class="nav-link" :class="{ active: activeSection === 'reportes' }">
@@ -213,6 +296,7 @@
             </a>
           </li>
 
+          <!-- Configuración -->
           <li class="nav-item">
             <a href="#" @click="setActiveSection('configuracion')" 
                class="nav-link" :class="{ active: activeSection === 'configuracion' }">
