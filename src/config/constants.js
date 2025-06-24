@@ -105,3 +105,8 @@ export const UNIDAD_API = {
   LIST: `${BACK_URL}/unidades/`,
   DETAIL: (id) => `${BACK_URL}/unidades/${id}/`
 }
+
+export const SILABO_API = {
+  LIST: `${BACK_URL}/silabos/`,
+  DETAIL: (id) => `${BACK_URL}/silabos/${id}/`
+}
