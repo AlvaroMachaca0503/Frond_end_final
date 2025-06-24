@@ -9,7 +9,6 @@ import AreaComponent from '@/components/AreaComponent.vue'
 import PlanCurricularComponent from '@/components/PlanCurricularComponent.vue'
 import SemestrePlanComponent from '@/components/SemestrePlanComponent.vue'
 import CursoComponent from '@/components/CursoComponent.vue'
-import PerfilComponent from '@/components/PerfilComponent.vue'
 import ProfesionComponent from '@/components/ProfesionComponent.vue'
 import ProfesorComponent from '@/components/ProfesorComponent.vue'
 import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
@@ -29,7 +28,6 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'plan',
   'semestreplan',
   'curso',
-  'perfil',
   'profesion',
   'profesor',
   'bibliografia',
@@ -52,7 +50,6 @@ export default {
     PlanCurricularComponent,
     SemestrePlanComponent,
     CursoComponent,
-    PerfilComponent,
     ProfesionComponent,
     ProfesorComponent,
     BibliografiaComponent,
@@ -109,7 +106,6 @@ export default {
         plan: 'Gestión plan curricular',
         semestreplan: 'Gestión de semestres del plan',
         curso: 'Gestión de curso',
-        perfil: 'Gestión de perfiles',
         profesion: 'Gestión de profesiones',
         profesor: 'Gestión de profesores',
         bibliografia: 'Gestión de bibliografías',

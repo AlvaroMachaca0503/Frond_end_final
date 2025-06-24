@@ -221,13 +221,6 @@
                     <span class="sidebar-text">Criterio</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="#" @click="setActiveSection('perfil')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'perfil' }">
-                    <i class="fas fa-user-tie sidebar-icon"></i>
-                    <span class="sidebar-text">Perfil de Egreso</span>
-                  </a>
-                </li>
               </ul>
             </div>
           </li>
@@ -492,10 +485,6 @@
 
         <div v-if="activeSection === 'curso'" class="section">
           <CursoComponent />
-        </div>
-
-        <div v-if="activeSection === 'perfil'" class="section">
-          <PerfilComponent />
         </div>
 
         <div v-if="activeSection === 'profesion'" class="section">
