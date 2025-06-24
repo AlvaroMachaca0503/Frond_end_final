@@ -256,13 +256,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" @click="setActiveSection('metodologia')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'metodologia' }">
-                    <i class="fas fa-lightbulb sidebar-icon"></i>
-                    <span class="sidebar-text">Metodologías</span>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="#" @click="setActiveSection('profesion')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'profesion' }">
                     <i class="fas fa-briefcase sidebar-icon"></i>
@@ -515,10 +508,6 @@
 
         <div v-if="activeSection === 'bibliografia'" class="section">
           <BibliografiaComponent />
-        </div>
-
-        <div v-if="activeSection === 'metodologia'" class="section">
-          <MetodologiaComponent />
         </div>
 
         <div v-if="activeSection === 'semana'" class="section">

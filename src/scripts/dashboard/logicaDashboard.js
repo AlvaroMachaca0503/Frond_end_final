@@ -13,7 +13,6 @@ import PerfilComponent from '@/components/PerfilComponent.vue'
 import ProfesionComponent from '@/components/ProfesionComponent.vue'
 import ProfesorComponent from '@/components/ProfesorComponent.vue'
 import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
-import MetodologiaComponent from '@/components/MetodologiaComponent.vue'
 import SemanaComponent from '@/components/SemanaComponent.vue'
 import UnidadComponent from '@/components/UnidadComponent.vue'
 import SilaboComponent from '@/components/SilaboComponent.vue'
@@ -34,7 +33,6 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'profesion',
   'profesor',
   'bibliografia',
-  'metodologia',
   'semana',
   'unidad',
   'silabo'
@@ -58,7 +56,6 @@ export default {
     ProfesionComponent,
     ProfesorComponent,
     BibliografiaComponent,
-    MetodologiaComponent,
     SemanaComponent,
     UnidadComponent,
     SilaboComponent
@@ -116,7 +113,6 @@ export default {
         profesion: 'Gestión de profesiones',
         profesor: 'Gestión de profesores',
         bibliografia: 'Gestión de bibliografías',
-        metodologia: 'Gestión de metodologías',
         semana: 'Gestión de semanas',
         unidad: 'Gestión de unidades',
         silabo: 'Gestión de silabos',
