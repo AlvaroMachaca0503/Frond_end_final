@@ -147,13 +147,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" @click="setActiveSection('sumilla')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'sumilla' }">
-                    <i class="fas fa-scroll sidebar-icon"></i>
-                    <span class="sidebar-text">Sumillas</span>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="#" @click="setActiveSection('unidad')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'unidad' }">
                     <i class="fas fa-puzzle-piece sidebar-icon"></i>
@@ -518,10 +511,6 @@
 
         <div v-if="activeSection === 'profesor'" class="section">
           <ProfesorComponent />
-        </div>
-
-        <div v-if="activeSection === 'sumilla'" class="section">
-          <SumillaComponent />
         </div>
 
         <div v-if="activeSection === 'bibliografia'" class="section">

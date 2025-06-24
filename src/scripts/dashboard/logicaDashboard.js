@@ -12,7 +12,6 @@ import CursoComponent from '@/components/CursoComponent.vue'
 import PerfilComponent from '@/components/PerfilComponent.vue'
 import ProfesionComponent from '@/components/ProfesionComponent.vue'
 import ProfesorComponent from '@/components/ProfesorComponent.vue'
-import SumillaComponent from '@/components/SumillaComponent.vue'
 import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
 import MetodologiaComponent from '@/components/MetodologiaComponent.vue'
 import SemanaComponent from '@/components/SemanaComponent.vue'
@@ -34,7 +33,6 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'perfil',
   'profesion',
   'profesor',
-  'sumilla',
   'bibliografia',
   'metodologia',
   'semana',
@@ -59,7 +57,6 @@ export default {
     PerfilComponent,
     ProfesionComponent,
     ProfesorComponent,
-    SumillaComponent,
     BibliografiaComponent,
     MetodologiaComponent,
     SemanaComponent,
@@ -118,7 +115,6 @@ export default {
         perfil: 'Gestión de perfiles',
         profesion: 'Gestión de profesiones',
         profesor: 'Gestión de profesores',
-        sumilla: 'Gestión de sumillas',
         bibliografia: 'Gestión de bibliografías',
         metodologia: 'Gestión de metodologías',
         semana: 'Gestión de semanas',
