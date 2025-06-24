@@ -4,7 +4,6 @@ import UniversidadComponent from '@/components/UniversidadComponent.vue'
 import FacultadComponent from '@/components/FacultadComponent.vue'
 import DepartamentoComponent from '@/components/DepartamentoComponent.vue'
 import CarreraComponent from '@/components/CarreraComponent.vue'
-import CompetenciaComponent from '@/components/CompetenciaComponent.vue'
 import CriterioComponent from '@/components/CriterioComponent.vue'
 import AreaComponent from '@/components/AreaComponent.vue'
 import PlanCurricularComponent from '@/components/PlanCurricularComponent.vue'
@@ -27,7 +26,6 @@ const TABLAS_MAESTRAS_SECTIONS = [
   'facultad',
   'departamento',
   'carrera',
-  'competencia',
   'criterio',
   'area',
   'plan',
@@ -53,7 +51,6 @@ export default {
     FacultadComponent,
     DepartamentoComponent,
     CarreraComponent,
-    CompetenciaComponent,
     CriterioComponent,
     AreaComponent,
     PlanCurricularComponent,
@@ -113,7 +110,6 @@ export default {
         facultad: 'Gestión de Facultades',
         departamento: 'Gestión de Departamentos',
         carrera: 'Gestión de carreras',
-        competencia: 'Gestión de competencias',
         criterio: 'Gestión de criterios',
         area: 'Gestión de areas',
         plan: 'Gestión plan curricular',

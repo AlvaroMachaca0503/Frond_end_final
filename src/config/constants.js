@@ -35,11 +35,6 @@ export const CARRERAS_API = {
   DETAIL: (id) => `${BACK_URL}/carreras/${id}/`
 }
 
-export const COMPETENCIA_API = {
-  LIST: `${BACK_URL}/competencias/`,
-  DETAIL: (id) => `${BACK_URL}/competencias/${id}/`
-}
-
 export const CRITERIO_API = {
   LIST: `${BACK_URL}/criterios/`,
   DETAIL: (id) => `${BACK_URL}/criterios/${id}/`

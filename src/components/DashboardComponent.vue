@@ -222,13 +222,6 @@
             <div v-if="subMenus.competenciasEvaluacion && !sidebarCollapsed" class="submenu">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a href="#" @click="setActiveSection('competencia')" 
-                     class="nav-link submenu-link" :class="{ active: activeSection === 'competencia' }">
-                    <i class="fas fa-trophy sidebar-icon"></i>
-                    <span class="sidebar-text">Competencia</span>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="#" @click="setActiveSection('criterio')" 
                      class="nav-link submenu-link" :class="{ active: activeSection === 'criterio' }">
                     <i class="fas fa-check-square sidebar-icon"></i>
@@ -495,10 +488,6 @@
           <CarreraComponent />
         </div>
 
-        <div v-if="activeSection === 'competencia'" class="section">
-          <CompetenciaComponent />
-        </div>
-
         <div v-if="activeSection === 'criterio'" class="section">
           <CriterioComponent />
         </div>
@@ -649,10 +638,6 @@
 
 <script>
 import Dashboard from '@/scripts/dashboard/logicaDashboard'
-import SemestrePlanComponent from './SemestrePlanComponent.vue';
-import BibliografiaComponent from './BibliografiaComponent.vue';
-import MetodologiaComponent from './MetodologiaComponent.vue';
-import SemanaComponent from './SemanaComponent.vue';
 
 export default {
   ...Dashboard
