@@ -106,6 +106,11 @@ export const UNIDAD_API = {
   DETAIL: (id) => `${BACK_URL}/unidades/${id}/`
 }
 
+export const TIPO_CURSO_API = {
+  LIST: `${BACK_URL}/tipos-curso/`,
+  DETAIL: (id) => `${BACK_URL}/tipos-curso/${id}/`
+}
+
 export const SILABO_API = {
   LIST: `${BACK_URL}/silabos/`,
   DETAIL: (id) => `${BACK_URL}/silabos/${id}/`
