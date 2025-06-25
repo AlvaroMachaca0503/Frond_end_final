@@ -1,199 +1,193 @@
-import {
-  FACULTADES_API,
-  CARRERAS_API,
-  CURSO_API,
-  PROFESOR_API,
-  COMPETENCIA_API,
-  PERFIL_API,
-  SUMILLA_API,
-  UNIDAD_API,
-  ACTIVIDADES_API,
-  CRITERIO_API
-} from '@/config/constants';
-
-const SILABO_API = {
-  LIST: `${import.meta.env.VITE_BACK_URL}/silabos/`,
-  DETAIL: (id) => `${import.meta.env.VITE_BACK_URL}/silabos/${id}/`
-};
+import { SILABO_API, FACULTAD_API, CARRERA_API, TIPO_CURSO_API } from '@/config/constants';
 
 export default {
-  name: 'SilaboComponent',
+  name: 'SilaboForm',
+  props: {
+    editingItem: Object
+  },
+  emits: ['save', 'cancel'],
   data() {
     return {
-      silabos: [],
-      filteredSilabos: [],
       loading: false,
       error: null,
-      showCreateForm: false,
-      editingItem: null,
-      currentPage: 1,
-      itemsPerPage: 10,
-      searchTerm: '',
-      formData: {
-        id: null,
-        periodo: '',
-        profesor_id: '',
-        facultad_id: '',
-        carrera_id: '',
-        curso_id: '',
-        competencia_id: '',
-        perfil_id: '',
-        competencia_profesional_id: '',
-        sumilla_id: '',
-        unidad_id: '',
-        actividad_id: '',
-        criterio_id: '',
-        activo: true
-      },
-      profesores: [],
+      
+      // Datos para los selects
       facultades: [],
       carreras: [],
-      cursos: [],
-      competencias: [],
-      perfiles: [],
-      sumillas: [],
-      unidades: [],
-      actividades: [],
-      criterios: []
+      tiposCurso: [],
+      
+      // Formulario principal
+      formData: this.editingItem ? { ...this.editingItem } : this.getEmptyForm()
     };
   },
-  computed: {
-    totalItems() {
-      return this.filteredSilabos.length;
-    },
-    totalPages() {
-      return Math.ceil(this.totalItems / this.itemsPerPage);
-    },
-    startIndex() {
-      return (this.currentPage - 1) * this.itemsPerPage;
-    },
-    endIndex() {
-      return Math.min(this.startIndex + this.itemsPerPage, this.totalItems);
-    },
-    paginatedSilabos() {
-      return this.filteredSilabos.slice(this.startIndex, this.endIndex);
-    },
-    camposRelacionados() {
-      return {
-        profesor_id: 'Profesor',
-        facultad_id: 'Facultad',
-        carrera_id: 'Carrera',
-        curso_id: 'Curso',
-        competencia_id: 'Competencia',
-        perfil_id: 'Perfil',
-        competencia_profesional_id: 'Competencia Profesional',
-        sumilla_id: 'Sumilla',
-        unidad_id: 'Unidad',
-        actividad_id: 'Actividad',
-        criterio_id: 'Criterio'
-      };
-    },
-    entidades() {
-      return {
-        profesor_id: this.profesores,
-        facultad_id: this.facultades,
-        carrera_id: this.carreras,
-        curso_id: this.cursos,
-        competencia_id: this.competencias,
-        perfil_id: this.perfiles,
-        competencia_profesional_id: this.competencias,
-        sumilla_id: this.sumillas,
-        unidad_id: this.unidades,
-        actividad_id: this.actividades,
-        criterio_id: this.criterios
-      };
-    },
-    mostrarNombre() {
-      return {
-        profesor_id: (item) => item.usuario?.first_name || `ID: ${item.id}`,
-        facultad_id: (item) => item.nombre,
-        carrera_id: (item) => item.nombre,
-        curso_id: (item) => item.nombre,
-        competencia_id: (item) => item.descripcion,
-        perfil_id: (item) => item.descripcion,
-        competencia_profesional_id: (item) => item.descripcion,
-        sumilla_id: (item) => item.descripcion,
-        unidad_id: (item) => item.descripcion,
-        actividad_id: (item) => item.nombre,
-        criterio_id: (item) => item.nombre
-      };
-    }
-  },
-  watch: {
-    silabos() {
-      this.applyFilters();
-    }
-  },
+
   mounted() {
-    this.fetchAll();
+    this.fetchFacultades();
+    this.fetchCarreras();
+    this.fetchTiposCurso();
   },
+
   methods: {
-    async fetchAll() {
-      await Promise.all([
-        this.fetchSilabos(),
-        this.fetchData(FACULTADES_API.LIST, 'facultades'),
-        this.fetchData(CARRERAS_API.LIST, 'carreras'),
-        this.fetchData(CURSO_API.LIST, 'cursos'),
-        this.fetchData(PROFESOR_API.LIST, 'profesores'),
-        this.fetchData(COMPETENCIA_API.LIST, 'competencias'),
-        this.fetchData(PERFIL_API.LIST, 'perfiles'),
-        this.fetchData(SUMILLA_API.LIST, 'sumillas'),
-        this.fetchData(UNIDAD_API.LIST, 'unidades'),
-        this.fetchData(ACTIVIDADES_API.LIST, 'actividades'),
-        this.fetchData(CRITERIO_API.LIST, 'criterios')
-      ]);
-    },
-
-    async fetchData(url, target) {
+    // Métodos para cargar datos de APIs
+    async fetchFacultades() {
       try {
         const token = localStorage.getItem('access_token');
-        const res = await fetch(url, {
+        const res = await fetch(FACULTAD_API.LIST, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        if (!res.ok) throw new Error(`Error al cargar ${target}`);
-        this[target] = await res.json();
+        if (!res.ok) throw new Error('Error al cargar facultades');
+        this.facultades = await res.json();
       } catch (err) {
         this.error = err.message;
+        console.error('Error cargando facultades:', err);
       }
     },
 
-    async fetchSilabos() {
-      this.loading = true;
+    async fetchCarreras() {
       try {
         const token = localStorage.getItem('access_token');
-        const res = await fetch(SILABO_API.LIST, {
+        const res = await fetch(CARRERA_API.LIST, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        if (!res.ok) throw new Error('Error al cargar silabos');
-        this.silabos = await res.json();
+        if (!res.ok) throw new Error('Error al cargar carreras');
+        this.carreras = await res.json();
       } catch (err) {
         this.error = err.message;
-      } finally {
-        this.loading = false;
+        console.error('Error cargando carreras:', err);
       }
     },
 
+    async fetchTiposCurso() {
+      try {
+        const token = localStorage.getItem('access_token');
+        const res = await fetch(TIPO_CURSO_API.LIST, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('Error al cargar tipos de curso');
+        this.tiposCurso = await res.json();
+      } catch (err) {
+        this.error = err.message;
+        console.error('Error cargando tipos de curso:', err);
+      }
+    },
+
+    // Estructura del formulario vacío
+    getEmptyForm() {
+      return {
+        facultad: '',
+        semestre: '',
+        area_formacion: '',
+        tipo_curso: '',
+        carrera_profesional: '',
+        nro_creditos: null,
+        prerrequisitos: '',
+        periodo: '',
+        horas_teoria: null,
+        horas_practica: null,
+        codigo_curso: '',
+        docente: '',
+        correo_docente: '',
+        competencia_curso: '',
+        competencia_perfil: '',
+        competencias_previas: '',
+        sumilla: '',
+        unidades: [],
+        actividades_rsu: '',
+        criterios: []
+      };
+    },
+
+    // Métodos para manejar unidades
+    addUnidad() {
+      this.formData.unidades.push({
+        denominacion: '',
+        semana: '',
+        competencia: '',
+        contenidos: '',
+        metodologia: '',
+        fuentes: ''
+      });
+    },
+    
+    removeUnidad(idx) {
+      if (confirm('¿Está seguro de eliminar esta unidad?')) {
+        this.formData.unidades.splice(idx, 1);
+      }
+    },
+
+    // Métodos para manejar criterios
+    addCriterio() {
+      this.formData.criterios.push({ 
+        evaluacion: '', 
+        peso: null, 
+        fecha: '', 
+        descripcion: '' 
+      });
+    },
+    
+    removeCriterio(idx) {
+      if (confirm('¿Está seguro de eliminar este criterio?')) {
+        this.formData.criterios.splice(idx, 1);
+      }
+    },
+
+    // Validación del formulario
+    validateForm() {
+      const errors = [];
+      
+      // Validaciones obligatorias
+      if (!this.formData.facultad) errors.push('Facultad es obligatoria');
+      if (!this.formData.semestre) errors.push('Semestre es obligatorio');
+      if (!this.formData.area_formacion) errors.push('Área de formación es obligatoria');
+      if (!this.formData.tipo_curso) errors.push('Tipo de curso es obligatorio');
+      if (!this.formData.carrera_profesional) errors.push('Carrera profesional es obligatoria');
+      if (!this.formData.nro_creditos) errors.push('Número de créditos es obligatorio');
+      if (!this.formData.periodo) errors.push('Periodo lectivo es obligatorio');
+      if (!this.formData.horas_teoria) errors.push('Horas de teoría es obligatorio');
+      if (!this.formData.horas_practica) errors.push('Horas de práctica es obligatorio');
+      if (!this.formData.codigo_curso) errors.push('Código del curso es obligatorio');
+      if (!this.formData.docente) errors.push('Docente responsable es obligatorio');
+      if (!this.formData.correo_docente) errors.push('Correo institucional es obligatorio');
+      
+      // Validar email
+      if (this.formData.correo_docente && !this.isValidEmail(this.formData.correo_docente)) {
+        errors.push('El correo electrónico no es válido');
+      }
+
+      // Validar que la suma de pesos de criterios no exceda 100%
+      if (this.formData.criterios.length > 0) {
+        const totalPeso = this.formData.criterios.reduce((sum, crit) => sum + (crit.peso || 0), 0);
+        if (totalPeso > 100) {
+          errors.push('La suma de los pesos de evaluación no puede exceder 100%');
+        }
+      }
+
+      return errors;
+    },
+
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+
+    // Envío del formulario
     async submitForm() {
+      // Validar antes de enviar
+      const errors = this.validateForm();
+      if (errors.length > 0) {
+        this.error = errors.join(', ');
+        return;
+      }
+
       this.loading = true;
+      this.error = null;
+
       try {
         const token = localStorage.getItem('access_token');
         const url = this.editingItem ? SILABO_API.DETAIL(this.editingItem.id) : SILABO_API.LIST;
         const method = this.editingItem ? 'PUT' : 'POST';
 
-        const payload = {
-          ...this.formData,
-          profesor: this.formData.profesor_id,
-          facultad: this.formData.facultad_id,
-          carrera: this.formData.carrera_id,
-          curso: this.formData.curso_id,
-          competencia: this.formData.competencia_id,
-          perfil: this.formData.perfil_id,
-          competencia_profesional: this.formData.competencia_profesional_id,
-          sumilla: this.formData.sumilla_id,
-          unidad: this.formData.unidad_id,
-          actividad: this.formData.actividad_id,
-          criterio: this.formData.criterio_id
-        };
+        const payload = { ...this.formData };
 
         const res = await fetch(url, {
           method,
@@ -209,97 +203,44 @@ export default {
           throw new Error(Object.values(errorData).flat().join(', '));
         }
 
-        await this.fetchSilabos();
-        this.cancelForm();
+        const result = await res.json();
+        this.$emit('save', result);
+        
       } catch (err) {
         this.error = err.message;
+        console.error('Error guardando sílabo:', err);
       } finally {
         this.loading = false;
       }
     },
 
-    editItem(silabo) {
-      this.editingItem = silabo;
-      this.formData = {
-        id: silabo.id,
-        periodo: silabo.periodo,
-        profesor_id: silabo.profesor,
-        facultad_id: silabo.facultad,
-        carrera_id: silabo.carrera,
-        curso_id: silabo.curso,
-        competencia_id: silabo.competencia,
-        perfil_id: silabo.perfil,
-        competencia_profesional_id: silabo.competencia_profesional,
-        sumilla_id: silabo.sumilla,
-        unidad_id: silabo.unidad,
-        actividad_id: silabo.actividad,
-        criterio_id: silabo.criterio,
-        activo: silabo.activo
-      };
-      this.showCreateForm = true;
-    },
-
-    async deleteItem(silabo) {
-      if (!confirm(`¿Está seguro de eliminar el silabo con ID ${silabo.id}?`)) return;
-      this.loading = true;
-      try {
-        const token = localStorage.getItem('access_token');
-        const res = await fetch(SILABO_API.DETAIL(silabo.id), {
-          method: 'DELETE',
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (!res.ok) throw new Error('Error al eliminar el silabo');
-        await this.fetchSilabos();
-      } catch (err) {
-        this.error = err.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-
+    // Cancelar formulario
     cancelForm() {
-      this.editingItem = null;
-      this.showCreateForm = false;
-      this.formData = {
-        id: null,
-        periodo: '',
-        profesor_id: '',
-        facultad_id: '',
-        carrera_id: '',
-        curso_id: '',
-        competencia_id: '',
-        perfil_id: '',
-        competencia_profesional_id: '',
-        sumilla_id: '',
-        unidad_id: '',
-        actividad_id: '',
-        criterio_id: '',
-        activo: true
-      };
-    },
-
-    goToPage(page) {
-      if (page >= 1 && page <= this.totalPages) {
-        this.currentPage = page;
+      if (this.hasChanges()) {
+        if (confirm('¿Está seguro de cancelar? Se perderán los cambios no guardados.')) {
+          this.$emit('cancel');
+        }
+      } else {
+        this.$emit('cancel');
       }
     },
 
-    changeItemsPerPage() {
-      this.currentPage = 1;
+    // Verificar si hay cambios no guardados
+    hasChanges() {
+      if (!this.editingItem) {
+        // Si es nuevo, verificar si hay algún campo con datos
+        const emptyForm = this.getEmptyForm();
+        return JSON.stringify(this.formData) !== JSON.stringify(emptyForm);
+      } else {
+        // Si es edición, comparar con datos originales
+        return JSON.stringify(this.formData) !== JSON.stringify(this.editingItem);
+      }
     },
 
-    handleSearch() {
-      this.currentPage = 1;
-      this.applyFilters();
-    },
-
-    applyFilters() {
-      const term = this.searchTerm.toLowerCase();
-      this.filteredSilabos = this.silabos.filter(s =>
-        s.periodo.toLowerCase().includes(term) ||
-        s.profesor_detalle?.usuario?.first_name?.toLowerCase().includes(term) ||
-        s.curso_detalle?.nombre?.toLowerCase().includes(term)
-      );
+    // Resetear formulario
+    resetForm() {
+      this.formData = this.editingItem ? { ...this.editingItem } : this.getEmptyForm();
+      this.error = null;
     }
   }
 };

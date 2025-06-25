@@ -1,3 +1,4 @@
+
 <template>
   <div class="silabo-form">
     <!-- Encabezado mejorado -->
@@ -25,6 +26,27 @@
       </button>
     </div>
 
+    <!-- Mensaje de error -->
+    <div v-if="error" class="error-box">
+      <div class="error-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+      </div>
+      <div class="error-content">
+        <h4>Error al procesar el formulario</h4>
+        <p>{{ error }}</p>
+      </div>
+      <button class="error-close" @click="error = null">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
     <!-- Formulario principal -->
     <form @submit.prevent="submitForm" class="form-content">
       
@@ -38,7 +60,7 @@
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label required">Facultad</label>
-            <select v-model="formData.facultad" class="form-select">
+            <select v-model="formData.facultad" class="form-select" required>
               <option value="">Seleccionar facultad</option>
               <option v-for="facultad in facultades" :key="facultad.id" :value="facultad.id">
                 {{ facultad.nombre }}
@@ -48,17 +70,17 @@
 
           <div class="form-group">
             <label class="form-label required">Semestre</label>
-            <input v-model="formData.semestre" type="text" class="form-input" placeholder="VII">
+            <input v-model="formData.semestre" type="text" class="form-input" placeholder="VII" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Área de formación</label>
-            <input v-model="formData.area_formacion" type="text" class="form-input" placeholder="Ingeniería de software">
+            <input v-model="formData.area_formacion" type="text" class="form-input" placeholder="Ingeniería de software" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Tipo de curso</label>
-            <select v-model="formData.tipo_curso" class="form-select">
+            <select v-model="formData.tipo_curso" class="form-select" required>
               <option value="">Seleccionar tipo</option>
               <option v-for="tipo in tiposCurso" :key="tipo.id" :value="tipo.id">
                 {{ tipo.nombre }}
@@ -68,7 +90,7 @@
 
           <div class="form-group">
             <label class="form-label required">Carrera profesional</label>
-            <select v-model="formData.carrera_profesional" class="form-select">
+            <select v-model="formData.carrera_profesional" class="form-select" required>
               <option value="">Seleccionar carrera</option>
               <option v-for="carrera in carreras" :key="carrera.id" :value="carrera.id">
                 {{ carrera.nombre }}
@@ -78,7 +100,7 @@
 
           <div class="form-group">
             <label class="form-label required">N.º de créditos</label>
-            <input v-model.number="formData.nro_creditos" type="number" min="0" class="form-input" placeholder="3">
+            <input v-model.number="formData.nro_creditos" type="number" min="1" max="10" class="form-input" placeholder="3" required>
           </div>
 
           <div class="form-group">
@@ -88,32 +110,32 @@
 
           <div class="form-group">
             <label class="form-label required">Periodo lectivo</label>
-            <input v-model="formData.periodo" type="text" class="form-input" placeholder="2025-I">
+            <input v-model="formData.periodo" type="text" class="form-input" placeholder="2025-I" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Horas de teoría</label>
-            <input v-model.number="formData.horas_teoria" type="number" min="0" class="form-input" placeholder="3">
+            <input v-model.number="formData.horas_teoria" type="number" min="0" max="20" class="form-input" placeholder="3" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Horas de práctica</label>
-            <input v-model.number="formData.horas_practica" type="number" min="0" class="form-input" placeholder="2">
+            <input v-model.number="formData.horas_practica" type="number" min="0" max="20" class="form-input" placeholder="2" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Código del curso</label>
-            <input v-model="formData.codigo_curso" type="text" class="form-input" placeholder="3.7.3.21">
+            <input v-model="formData.codigo_curso" type="text" class="form-input" placeholder="3.7.3.21" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Docente responsable</label>
-            <input v-model="formData.docente" type="text" class="form-input" placeholder="Nombre del docente">
+            <input v-model="formData.docente" type="text" class="form-input" placeholder="Nombre del docente" required>
           </div>
 
           <div class="form-group">
             <label class="form-label required">Correo institucional</label>
-            <input v-model="formData.correo_docente" type="email" class="form-input" placeholder="docente@universidad.edu">
+            <input v-model="formData.correo_docente" type="email" class="form-input" placeholder="docente@universidad.edu" required>
           </div>
         </div>
       </div>
@@ -206,11 +228,11 @@
             <div class="form-grid">
               <div class="form-group">
                 <label class="form-label required">Denominación</label>
-                <input v-model="unidad.denominacion" type="text" class="form-input" placeholder="Nombre de la unidad">
+                <input v-model="unidad.denominacion" type="text" class="form-input" placeholder="Nombre de la unidad" required>
               </div>
               <div class="form-group">
                 <label class="form-label required">Semana(s)</label>
-                <input v-model="unidad.semana" type="text" class="form-input" placeholder="11 de Marzo al 28 de Marzo">
+                <input v-model="unidad.semana" type="text" class="form-input" placeholder="11 de Marzo al 28 de Marzo" required>
               </div>
             </div>
 
@@ -291,10 +313,10 @@
           
           <div v-for="(crit, idx) in formData.criterios" :key="idx" class="table-row">
             <div class="table-cell">
-              <input v-model="crit.evaluacion" type="text" class="form-input-sm" placeholder="Examen parcial">
+              <input v-model="crit.evaluacion" type="text" class="form-input-sm" placeholder="Examen parcial" required>
             </div>
             <div class="table-cell">
-              <input v-model.number="crit.peso" type="number" min="0" max="100" class="form-input-sm" placeholder="30">
+              <input v-model.number="crit.peso" type="number" min="0" max="100" class="form-input-sm" placeholder="30" required>
             </div>
             <div class="table-cell">
               <input v-model="crit.fecha" type="date" class="form-input-sm">
@@ -311,12 +333,20 @@
               </button>
             </div>
           </div>
+          
+          <!-- Resumen de pesos -->
+          <div class="peso-summary" :class="{ 'peso-warning': totalPeso > 100, 'peso-complete': totalPeso === 100 }">
+            <strong>Total: {{ totalPeso }}%</strong>
+            <span v-if="totalPeso > 100" class="peso-message">⚠️ Excede 100%</span>
+            <span v-else-if="totalPeso === 100" class="peso-message">✅ Completo</span>
+            <span v-else class="peso-message">Falta {{ 100 - totalPeso }}%</span>
+          </div>
         </div>
       </div>
 
       <!-- ACCIONES -->
       <div class="form-actions">
-        <button type="button" class="btn-secondary" @click="cancelForm">
+        <button type="button" class="btn-secondary" @click="cancelForm" :disabled="loading">
           Cancelar
         </button>
         <button type="submit" class="btn-primary" :disabled="loading">
@@ -331,7 +361,12 @@
 <script>
 import SilaboForm from '@/scripts/silabo/newLogicaSilabo'
 export default {
-  ...SilaboForm
+  ...SilaboForm,
+  computed: {
+    totalPeso() {
+      return this.formData.criterios.reduce((sum, crit) => sum + (crit.peso || 0), 0);
+    }
+  }
 }
 </script>
 
