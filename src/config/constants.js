@@ -115,3 +115,8 @@ export const SILABO_API = {
   LIST: `${BACK_URL}/silabos/`,
   DETAIL: (id) => `${BACK_URL}/silabos/${id}/`
 }
+
+export const PERIODO_LECTIVO_API = {
+  LIST: `${BACK_URL}/periodos-lectivos/`,
+  DETAIL: (id) => `${BACK_URL}/periodos-lectivos/${id}/`
+}
