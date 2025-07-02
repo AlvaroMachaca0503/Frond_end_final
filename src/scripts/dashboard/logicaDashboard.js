@@ -14,7 +14,7 @@ import ProfesorComponent from '@/components/ProfesorComponent.vue'
 import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
 import SemanaComponent from '@/components/SemanaComponent.vue'
 import UnidadComponent from '@/components/UnidadComponent.vue'
-import SilaboComponent from '@/components/SilaboComponent.vue'
+import SilaboFormComponent from '@/components/SilaboFormComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -55,7 +55,7 @@ export default {
     BibliografiaComponent,
     SemanaComponent,
     UnidadComponent,
-    SilaboComponent
+    SilaboFormComponent
   },
   data() {
     return {

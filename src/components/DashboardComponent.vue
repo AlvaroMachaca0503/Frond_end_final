@@ -508,7 +508,7 @@
         </div>
 
         <div v-if="activeSection === 'silabo'" class="section">
-          <SilaboComponent />
+          <SilaboFormComponent />
         </div>
 
         <!-- Reportes -->
