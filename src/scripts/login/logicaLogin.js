@@ -32,7 +32,9 @@ export default {
         if (response.ok) {
           // Guardar el token en localStorage
           localStorage.setItem('access_token', data.access);
-          
+          localStorage.setItem('name', data.nombre);
+          localStorage.setItem('email', data.email);
+
           // Emitir evento para notificar login exitoso
           this.$emit('login-success');
           

@@ -295,8 +295,8 @@
           <div class="user-info d-flex align-items-center">
             <i class="fas fa-user-circle fa-2x text-muted me-2"></i>
             <div class="user-details">
-              <small class="text-muted d-block">Bienvenido,</small>
-              <strong>Usuario Admin</strong>
+              <small class="text-muted d-block">{{fullName}}</small>
+              <strong>{{emailUser}}</strong>
             </div>
           </div>
         </div>
@@ -508,7 +508,7 @@
         </div>
 
         <div v-if="activeSection === 'silabo'" class="section">
-          <SilaboFormComponent />
+          <SilaboComponent />
         </div>
 
         <!-- Reportes -->
