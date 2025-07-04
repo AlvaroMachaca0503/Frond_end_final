@@ -1,5 +1,6 @@
 const BACK_URL = import.meta.env.VITE_BACK_URL;
-const OAUTH_URL = import.meta.env.VITE_OAUTH_URL;
+const API_URL = import.meta.env.VITE_API_URL;
+console.log("API_URL desde constants.js:", API_URL);
 
 export const UNIVERSIDADES_API = {
   LIST: `${BACK_URL}/universidades/`,
@@ -16,8 +17,9 @@ export const ESTUDIANTES_API = {
   DETAIL: (id) => `${BACK_URL}/estudiantes/${id}/`
 };
 
-export const TOKEN_API = {
-    GET_TOKEN: `${OAUTH_URL}/token/`
+export const ENDPOINTS = {
+  GET_TOKEN: `${API_URL}/token/`,
+  // ... otros endpoints ...
 };
 
 export const FACULTADES_API = {
@@ -64,7 +66,6 @@ export const CURSO_API = {
   LIST: `${BACK_URL}/cursos/`,
   DETAIL: (id) => `${BACK_URL}/cursos/${id}/`
 }
-
 
 export const PERFIL_API = {
   LIST: `${BACK_URL}/perfiles/`,

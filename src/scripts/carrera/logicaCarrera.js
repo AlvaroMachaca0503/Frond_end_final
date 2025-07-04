@@ -12,7 +12,7 @@ export default {
       editingItem: null,
       formData: {
         nombre: '',
-        activa: true,
+        activo: true,
         departamento_id: ''
       },
       // Paginación
@@ -141,7 +141,7 @@ export default {
 
         const payload = {
           nombre: this.formData.nombre,
-          activa: this.formData.activa,
+          activo: this.formData.activo,
           departamento: this.formData.departamento_id
         };
 
@@ -200,7 +200,7 @@ export default {
       this.editingItem = carrera;
       this.formData = {
         nombre: carrera.nombre,
-        activa: carrera.activa,
+        activo: carrera.activo,
         departamento_id: carrera.departamento
       };
     },
@@ -210,7 +210,7 @@ export default {
       this.editingItem = null;
       this.formData = {
         nombre: '',
-        activa: true,
+        activo: true,
         departamento_id: ''
       };
       this.error = null;

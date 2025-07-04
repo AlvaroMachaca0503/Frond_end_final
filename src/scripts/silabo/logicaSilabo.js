@@ -67,7 +67,8 @@ export default {
       currentPage: 1,
       itemsPerPage: 10,
       searchTerm: '',
-      filteredSilabos: []
+      filteredSilabos: [],
+      colapsadasUnidades: []
     };
   },
 
@@ -331,7 +332,8 @@ export default {
         competencia: '',
         contenidos: '',
         metodologia: '',
-        fuentes: ''
+        fuentes: '',
+        semanas: []
       });
     },
 
@@ -339,6 +341,14 @@ export default {
       if (confirm('¿Está seguro de eliminar esta unidad?')) {
         this.formData.unidades.splice(index, 1);
       }
+    },
+
+    addSemana(idxUnidad) {
+      this.formData.unidades[idxUnidad].semanas.push({ numero: '', contenido: '' });
+    },
+
+    removeSemana(idxUnidad, idxSemana) {
+      this.formData.unidades[idxUnidad].semanas.splice(idxSemana, 1);
     },
 
     /* ---------- Manejo de Criterios ---------- */
@@ -528,6 +538,14 @@ export default {
           s.profesor_detalle?.persona?.nombre?.toLowerCase().includes(term) ||
           s.periodo_lectivo_detalle?.periodo?.toLowerCase().includes(term)
         );
+      }
+    },
+
+    toggleUnidadCollapse(idx) {
+      if (this.colapsadasUnidades.includes(idx)) {
+        this.colapsadasUnidades = this.colapsadasUnidades.filter(i => i !== idx);
+      } else {
+        this.colapsadasUnidades.push(idx);
       }
     }
   }

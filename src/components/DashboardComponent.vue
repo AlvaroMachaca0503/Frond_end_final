@@ -270,11 +270,35 @@
 
           <!-- Configuración -->
           <li class="nav-item">
-            <a href="#" @click="setActiveSection('configuracion')" 
-               class="nav-link" :class="{ active: activeSection === 'configuracion' }">
+            <a href="#" @click="toggleSubMenu('configuracion')" 
+               class="nav-link d-flex justify-content-between align-items-center"
+               :class="{ active: isParentActive('configuracion') }">
+              <div>
               <i class="fas fa-cog sidebar-icon"></i>
               <span v-if="!sidebarCollapsed" class="sidebar-text">Configuración</span>
+              </div>
+              <i v-if="!sidebarCollapsed" 
+                 :class="subMenus.configuracion ? 'fas fa-chevron-down' : 'fas fa-chevron-right'"
+                 class="submenu-arrow"></i>
             </a>
+            <div v-if="subMenus.configuracion && !sidebarCollapsed" class="submenu">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('cuenta')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'cuenta' }">
+                    <i class="fas fa-university sidebar-icon"></i>
+                    <span class="sidebar-text">Cuenta</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" @click="setActiveSection('usuario')" 
+                     class="nav-link submenu-link" :class="{ active: activeSection === 'usuario' }">
+                    <i class="fas fa-user-cog sidebar-icon"></i>
+                    <span class="sidebar-text">Usuario</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
@@ -553,50 +577,14 @@
           </div>
         </div>
 
-        <!-- Configuración -->
-        <div v-if="activeSection === 'configuracion'" class="section">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0">
-              <i class="fas fa-cog text-secondary me-2"></i>
-              Configuración del Sistema
-            </h4>
+        <!-- Cuenta -->
+        <div v-if="activeSection === 'cuenta'" class="section">
+          <CuentaComponent />
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="mb-0">
-                    <i class="fas fa-user-cog me-2"></i>
-                    Configuración de Usuario
-                  </h5>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="mb-3">
-                      <label class="form-label">Nombre de usuario</label>
-                      <input type="text" class="form-control" value="Admin Usuario">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" value="admin@example.com">
-                    </div>
-                    <div class="mb-3">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="notifications">
-                        <label class="form-check-label" for="notifications">
-                          Recibir notificaciones por email
-                        </label>
-                      </div>
-                    </div>
-                    <button class="btn btn-primary">
-                      <i class="fas fa-save me-2"></i>
-                      Guardar Cambios
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+
+        <!-- Usuario -->
+        <div v-if="activeSection === 'usuario'" class="section">
+          <UsuarioComponent />
         </div>
       </div>
     </main>

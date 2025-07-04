@@ -128,10 +128,10 @@
           <tbody>
             <tr v-for="profesor in paginatedProfesores" :key="profesor.id">
               <td>{{ profesor.id }}</td>
-              <td>{{ profesor.usuario.username }}</td>
-              <td>{{ profesor.usuario.first_name }} {{ profesor.usuario.last_name }}</td>
-              <td>{{ profesor.dni }}</td>
-              <td>{{ profesor.profesion_detalle?.nombre || 'N/A' }}</td>
+              <td>{{ profesor.persona.usuario.username }}</td>
+              <td>{{ profesor.persona.nombre }} {{ profesor.persona.apellido_paterno }} {{ profesor.persona.apellido_materno }}</td>
+              <td>{{ profesor.persona.dni }}</td>
+              <td>{{ profesor.profesion?.nombre || 'N/A' }}</td>
               <td>
                 <button @click="editItem(profesor)" class="btn btn-sm btn-warning">Editar</button>
                 <button @click="deleteItem(profesor)" class="btn btn-sm btn-danger">Eliminar</button>

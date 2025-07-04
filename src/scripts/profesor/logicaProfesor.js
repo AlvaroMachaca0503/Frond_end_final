@@ -211,18 +211,18 @@ export default {
             this.editingItem = profesor;
             this.formData = {
                 usuario: {
-                    username: profesor.usuario.username,
-                    first_name: profesor.usuario.first_name,
-                    last_name: profesor.usuario.last_name,
-                    email: profesor.usuario.email,
+                    username: profesor.persona.usuario.username,
+                    first_name: profesor.persona.usuario.first_name,
+                    last_name: profesor.persona.usuario.last_name,
+                    email: profesor.persona.usuario.email,
                     password: ''
                 },
-                profesion_id: profesor.profesion_id || profesor.profesion?.id || profesor.profesion_detalle?.id || '',
-                dni: profesor.dni,
-                genero: profesor.genero,
-                fecha_nacimiento: profesor.fecha_nacimiento,
-                nacionalidad: profesor.nacionalidad,
-                telefono: profesor.telefono
+                profesion_id: profesor.profesion?.id || '',
+                dni: profesor.persona.dni,
+                genero: profesor.persona.genero,
+                fecha_nacimiento: profesor.persona.fecha_nacimiento,
+                nacionalidad: profesor.persona.nacionalidad,
+                telefono: profesor.persona.telefono
             };
             this.showCreateForm = true;
         },

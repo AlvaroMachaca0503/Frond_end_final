@@ -15,9 +15,8 @@ import BibliografiaComponent from '@/components/BibliografiaComponent.vue'
 import SemanaComponent from '@/components/SemanaComponent.vue'
 import UnidadComponent from '@/components/UnidadComponent.vue'
 import SilaboComponent from '@/components/SilaboComponent.vue'
-
-import { ref } from 'vue'
-
+import CuentaComponent from '@/components/CuentaComponent.vue'
+import UsuarioComponent from '@/components/UsuarioComponent.vue'
 
 const TABLAS_MAESTRAS_SECTIONS = [
   'estudiantes',
@@ -58,16 +57,17 @@ export default {
     BibliografiaComponent,
     SemanaComponent,
     UnidadComponent,
-    SilaboComponent
+    SilaboComponent,
+    CuentaComponent,
+    UsuarioComponent
   },
   data() {
     return {
-      fullName: localStorage.getItem('name')  ?? '',
-      emailUser: localStorage.getItem('email') ?? '',
       sidebarCollapsed: false,
       activeSection: 'dashboard',
       subMenus: {
-        tablasMaestras: false
+        tablasMaestras: false,
+        configuracion: false
       }
     }
   },
@@ -85,6 +85,9 @@ export default {
       if (TABLAS_MAESTRAS_SECTIONS.includes(section)) {
         this.subMenus.tablasMaestras = true;
       }
+      if (['cuenta', 'usuario'].includes(section)) {
+        this.subMenus.configuracion = true;
+      }
     },
     toggleSubMenu(menuKey) {
       if (!this.sidebarCollapsed) {
@@ -94,6 +97,9 @@ export default {
     isParentActive(parentKey) {
       if (parentKey === 'tablasMaestras') {
         return TABLAS_MAESTRAS_SECTIONS.includes(this.activeSection);
+      }
+      if (parentKey === 'configuracion') {
+        return ['cuenta', 'usuario'].includes(this.activeSection);
       }
       return false;
     },
@@ -118,7 +124,8 @@ export default {
         unidad: 'Gestión de unidades',
         silabo: 'Gestión de silabos',
         reportes: 'Reportes del Sistema',
-        configuracion: 'Configuración'
+        cuenta: 'Configuración de Cuenta',
+        usuario: 'Configuración de Usuario'
       };
       return titles[this.activeSection] || 'Dashboard';
     },
@@ -129,6 +136,9 @@ export default {
   mounted() {
     if (TABLAS_MAESTRAS_SECTIONS.includes(this.activeSection)) {
       this.subMenus.tablasMaestras = true;
+    }
+    if (['cuenta', 'usuario'].includes(this.activeSection)) {
+      this.subMenus.configuracion = true;
     }
   }
 };

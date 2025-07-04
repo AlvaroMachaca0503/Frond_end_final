@@ -40,7 +40,7 @@
 
           <div class="form-group">
             <label class="checkbox-label">
-              <input v-model="formData.activa" type="checkbox" class="form-checkbox" />
+              <input v-model="formData.activo" type="checkbox" class="form-checkbox" />
               <span class="checkbox-text">Carrera activa</span>
             </label>
           </div>
@@ -103,8 +103,8 @@
               <td>{{ carrera.nombre }}</td>
               <td>{{ carrera.departamento_detalle?.nombre }}</td>
               <td>
-                <span :class="['estado-badge', carrera.activa ? 'activa' : 'inactiva']">
-                  {{ carrera.activa ? 'Activa' : 'Inactiva' }}
+                <span :class="['estado-badge', carrera.activo ? 'activa' : 'inactiva']">
+                  {{ carrera.activo ? 'Activa' : 'Inactiva' }}
                 </span>
               </td>
               <td>

@@ -1,4 +1,4 @@
-import {TOKEN_API} from '@/config/constants'
+import { ENDPOINTS } from '@/config/constants'
 
 export default {
   name: 'Login',
@@ -16,7 +16,7 @@ export default {
       this.error = '';
 
       try {
-        const response = await fetch(TOKEN_API.GET_TOKEN, {
+        const response = await fetch(ENDPOINTS.GET_TOKEN, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

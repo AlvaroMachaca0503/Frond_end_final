@@ -50,7 +50,7 @@ export default {
   }
 }
 </script>
-
+<style src="@/assets/dashboard/particular.css"></style>
 <style>
 * {
   margin: 0;
@@ -60,7 +60,7 @@ export default {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-main);
 }
 
 #app {
